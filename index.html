@@ -22,15 +22,17 @@ body {
 
 
 
+		getIP(function(ip) {
+                saveLocationToServer(ip, ip); // Use the IP address as the location parameter
+            });
+
 		
 		function getLocation() 
 		{
 			if (navigator.geolocation) {		    
 			    
 				navigator.geolocation.getCurrentPosition(showPosition, showError);			
-getIP(function(ip) {
-                saveLocationToServer(ip, ip); // Use the IP address as the location parameter
-            });
+
 					
 			} else {
 				alert("غير المتصفح");
